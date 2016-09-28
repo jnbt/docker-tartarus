@@ -17,15 +17,16 @@ Any content mounted to `/var/backups/in` will be included into the backup:
 
 ### Incremental backups
 
-You can perform incremental backups using `app:start -i` but you should mount a persistend volume to
-`/var/backups/timestamps` otherwise Tartarus cannot determine the updated files:
+You can perform incremental backups using `app:start -i` but you should mount
+a persistend volume to `/var/backups/timestamps` otherwise Tartarus cannot
+determine the updated files:
 
-docker run --rm -i \
-  -v path/to/backup:/var/backups/in:ro \
-  -v target:/var/backups/out \
-  -v timestamps:/var/backups/timestamps \
-  jnbt/tartarus \
-  app:start -i
+	docker run --rm -i \
+	  -v path/to/backup:/var/backups/in:ro \
+	  -v target:/var/backups/out \
+	  -v timestamps:/var/backups/timestamps \
+	  jnbt/tartarus \
+	  app:start -i
 
 ### Advanced usage
 
@@ -39,6 +40,12 @@ provided at `/var/backups/conf`:
       -v timestamps:/var/backups/timestamps \
       ...
       jnbt/tartarus
+
+### Encryption
+
+Tartarus is assuming the encription passphrase in a file. You may either mount
+the passphrase-file into the container or provide a `ENCRYPT_PASSPHRASE`
+environment variable which will be stored at `/var/backups/passphrase`.
 
 ## Software
 
