@@ -19,15 +19,13 @@ RUN curl -O -L https://github.com/wertarbyte/tartarus/archive/release/$TARTARUS_
  && cp -R tartarus-release-$TARTARUS_VERSION/bin/* /usr/local/sbin \
  && cp -R tartarus-release-$TARTARUS_VERSION/lib/Tartarus /usr/share/perl5/ \
  && rm -r tartarus-release-$TARTARUS_VERSION \
- && mkdir -p /var/backups/conf /var/backups/in /var/backups/out /var/backups/timestamps \
- && chown -R backup:backup /var/backups
+ && mkdir -p /var/backups/conf /var/backups/in /var/backups/out /var/backups/timestamps
 
 COPY entrypoint.sh /entrypoint.sh
 ENTRYPOINT ["/entrypoint.sh"]
 
 COPY conf/* /var/backups/conf
 
-USER backup
 WORKDIR /var/backups
 
 VOLUME /var/backups/out /var/backups/timestamps
