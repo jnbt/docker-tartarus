@@ -3,7 +3,7 @@ MAINTAINER Jonas Thiel <jonas@thiel.io>
 
 ENV TARTARUS_VERSION=0.9.8 \
     RELEASE_DATE=2016-09-28 \
-    REQUIRED_PACKAGES="tar bzip2 gnupg curl ca-certificates"
+    REQUIRED_PACKAGES="tar bzip2 gnupg curl ca-certificates perl-modules"
 
 RUN apt-get update \
  && DEBIAN_FRONTEND=noninteractive apt-get install -y -q --no-install-recommends  \
